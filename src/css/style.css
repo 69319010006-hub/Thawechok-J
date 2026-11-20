@@ -1,0 +1,289 @@
+/* =========================================
+   Design System & CSS Variables
+   ========================================= */
+:root {
+    --color-primary: #0f172a;
+    --color-primary-hover: #1e293b;
+    --color-accent: #2563eb;
+    --color-accent-hover: #1d4ed8;
+    --color-success: #16a34a;
+    --color-error: #dc2626;
+    --color-bg: #f8fafc;
+    --color-surface: #ffffff;
+    --color-text-main: #0f172a;
+    --color-text-muted: #64748b;
+    --color-text-light: #f8fafc;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --border-radius: 12px;
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --transition-fast: 0.2s ease-in-out;
+}
+
+/* =========================================
+   Reset & Base Styles
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================
+   Layout: Split Screen Grid
+   ========================================= */
+.login-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--color-surface);
+}
+
+@media (min-width: 900px) {
+    .login-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* =========================================
+   Section: Branding (ซ้าย)
+   ========================================= */
+.brand-section {
+    display: none;
+    background: linear-gradient(135deg, var(--color-primary), #1e293b);
+    color: var(--color-text-light);
+    padding: 4rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (min-width: 900px) {
+    .brand-section { display: flex; }
+}
+
+.brand-section::after {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, rgba(255,255,255,0) 70%);
+    top: -100px;
+    left: -100px;
+    border-radius: 50%;
+}
+
+.brand-logo {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.brand-logo svg {
+    width: 32px;
+    height: 32px;
+    fill: var(--color-accent);
+}
+
+.brand-title {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-md);
+}
+
+.brand-subtitle {
+    font-size: 1.125rem;
+    color: #94a3b8;
+    max-width: 80%;
+    line-height: 1.6;
+}
+
+/* =========================================
+   Section: Form (ขวา)
+   ========================================= */
+.form-section {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-header {
+    margin-bottom: 2.5rem;
+    text-align: left;
+}
+
+.form-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+}
+
+.form-header p {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+}
+
+/* =========================================
+   Form Controls
+   ========================================= */
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.input-field {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    font-size: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--border-radius);
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    transition: all var(--transition-fast);
+    outline: none;
+    font-family: inherit;
+}
+
+.input-field:focus {
+    border-color: var(--color-accent);
+    background-color: var(--color-surface);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-muted);
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    transition: color var(--transition-fast);
+}
+
+.input-field:focus + .input-icon {
+    color: var(--color-accent);
+}
+
+.toggle-password {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    padding: 0.25rem;
+}
+
+.toggle-password:hover {
+    color: var(--color-text-main);
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    font-size: 0.875rem;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.forgot-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition-fast);
+}
+
+.forgot-link:hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline;
+}
+
+/* =========================================
+   Buttons & Loading States
+   ========================================= */
+.btn-primary {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: inherit;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.spinner {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.is-loading .spinner { display: block; }
+.is-loading .btn-text { display: none; }
+.is-loading { pointer-events: none; opacity: 0.9; }
+
+.error-message {
+    color: var(--color-error);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    display: none;
+}
